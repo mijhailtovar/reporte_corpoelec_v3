@@ -1,0 +1,543 @@
+/*GENERALES*/
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Calibri', 'Geneva', Tahoma, sans-serif;
+}
+
+body {
+    background: url(../img/bg.png);
+}
+
+a {
+    color: cyan;
+}
+
+a:visited {
+    color: cyan;
+}
+
+a:hover {
+    color: darkblue;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+table caption {
+    /*
+    text-align: center;
+    background-color: #01B1EA;
+    width: 30%;
+    border-radius: 5px;
+    display: block;
+    */
+    font-size: 1.4em;
+    text-align: center;
+    padding-top: 25px;
+}
+
+table td,
+table th {
+    border: 1px solid #1e2794;
+    /* padding: 10px, 10px, 5px, 5px; */
+    font-size: 25px;
+}
+
+table th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    background-color: #1d60b3;
+    color: white;
+}
+
+th {
+    font-weight: bold;
+}
+
+table tr.alterna td {
+    background-color: #9bc4f7;
+}
+
+
+
+/*Container*/
+#container {
+    width: 80%;
+    margin: 0px auto;
+    box-shadow: 0px 0px 10px gray;
+    background-color: white;
+}
+
+/*header*/
+#header {
+    width: auto;
+    height: 145px;
+    background: #F0f0f0;
+
+}
+
+#logo {
+    padding: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+#logo img {
+    height: 50px;
+    box-shadow: 10px 0px 10px white, -10px 0px 10px white,
+        0px 10px 10px white, 0px -10px 10px white;
+    float: left;
+}
+
+#logo a {
+    float: left;
+    font-size: 30px;
+    letter-spacing: 4px;
+    font-family: 'Verdana', 'Calibri', 'Arial Narrow Bold', 'Times New Roman';
+    text-transform: uppercase;
+    color: #01B1EA;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 29px;
+    margin-left: 25px;
+    text-shadow: 0px 2px 2px darkblue;
+    transition: all 300ms;
+}
+
+#logo a:hover {
+    color: white;
+    text-shadow: 2px 2px 3px black;
+}
+
+/*menu*/
+#menu {
+    clear: both;
+    background: #222;
+    color: white;
+    height: 57px;
+    border-bottom: 4px solid #01B1EA;
+
+}
+
+#menu ul {
+    list-style: none;
+    text-decoration: none;
+    margin: 0px auto;
+}
+
+#menu ul li {
+    /*
+    se comenta esta linea para no interferir con los estilo de
+   el menu desplegable
+    float: left;
+    line-height: 55px;
+    border-right: 10px solid #363636;
+    */
+    border-bottom: 10px solid #363636;
+}
+
+#menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 300ms;
+}
+
+#menu a:hover {
+    color: black;
+    background-color: cyan;
+}
+
+/*content*/
+#content {
+    margin: 0px auto;
+    overflow: hidden;
+    background-color: white;
+}
+
+/*contenido_central*/
+#contenido_central {
+    /*border: red solid 1px;*/
+    float: left;
+    width: 97%;
+    min-height: 450px;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 26px;
+}
+
+/*barra lateral*/
+#lateral {
+    width: 20%;
+    float: left;
+    min-height: 500px;
+    margin-top: 20px;
+    margin-left: 15px;
+    /*   border: 1px solid black;*/
+}
+
+#lateral .block_aside {
+    display: block;
+    width: 90%;
+    margin: 5px auto;
+    padding: 10px;
+    /*    border: 1px solid red;*/
+}
+
+#lateral h3 {
+    display: block;
+    color: #222;
+    width: 100%;
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #E1E1E1;
+    border-bottom: 2px solid #01B1EA;
+}
+
+#lateral ul {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#lateral ul li {
+    list-style: square;
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/*textarea*/
+#textarea {
+    width: 50%;
+}
+
+/*Forms*/
+label,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+option,
+textarea {
+    display: block;
+    width: 95%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 25px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+option,
+textarea {
+    border: 1px solid #C9C9C9;
+    box-shadow: 0px 0px 2px #ccc inset;
+    background-color: white;
+    padding: 2px;
+    color: grey;
+    transition: all 300ms;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"],
+select:focus,
+textarea:focus {
+    border: 1px solid darkblue;
+    color: darkblue;
+}
+
+input[type="button"],
+input[type="submit"],
+button,
+.button {
+    display: block;
+    border-radius: 2px;
+    width: auto;
+    padding: 5px;
+    /*
+    padding-left: 10px;
+    padding-right: 10px;
+    */
+    color: whitesmoke;
+    background-color: #0093ec;
+    border: 2px solid #0b3a73;
+    cursor: pointer;
+}
+
+label,
+input[type="button"],
+input[type="submit"],
+button {
+    display: block;
+    margin-top: 10px;
+}
+
+.button {
+    border-radius: 10px;
+    background-color: #06f542;
+    text-decoration: none;
+    color: white !important;
+    border: 2px solid #313533;
+    transition: all 300ms;
+}
+
+.button-small {
+    font-weight: bold;
+    color: black !important;
+    width: 165px;
+    text-align: center;
+}
+
+.button-gestion {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button-red {
+    background-color: red;
+    border: solid 1px #850009;
+}
+
+#RegistrarMercancia {
+    margin-top: 15px;
+}
+
+.button:hover {
+    color: white !important;
+    text-shadow: 2px 2px 1px black;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+/*Central*/
+#central {
+    width: 90%;
+    float: right;
+    min-height: 500px;
+    border-right: 1px solid #ccc;
+    box-shadow: -5px -1px 5px #ddd;
+    padding: 25px;
+    margin-right: 15px;
+}
+
+#central h1 {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    padding: 25px;
+    padding-top: 0px;
+}
+
+#contenido_central h1 {
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 4px solid #01B1EA;
+    box-shadow: 0px 5px 0px #222;
+    margin-bottom: 20px;
+    padding: 25px;
+    padding-top: 0px;
+}
+
+/*PRODUCTOS*/
+
+.product {
+    width: 30%;
+    border: 1px solid #01B1EA;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.product img {
+    /* width: 100px; */
+    height: 150px;
+}
+
+.product h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.product p {
+    font-weight: bold;
+    color: #042c0e;
+    margin-bottom: 10px;
+}
+
+/*FOOTER*/
+#footer {
+    clear: both;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    background-color: #222222;
+    border-top: 4px solid #01B1EA;
+    margin-top: 20px;
+}
+
+input[type="checkbox"] {
+    -webkit-transform: scale(2.5);
+    -moz-transform: scale(2.5);
+    -ms-transform: scale(2.5);
+    -o-transform: scale(2.5);
+    transform: scale(2.5);
+    /* Aumenta el tamaño en un 50% */
+    margin: 20px;
+}
+
+/*ajusta el ancho de las columnas de manera especifica en subestaciones index*/
+col.columna-uno {
+    width: 150px;
+}
+
+col.columna-dos {
+    width: 50px;
+}
+
+col.columna-tres {
+    width: 150px;
+}
+
+/*estilos para el menu desplegable en header*/
+#menu {
+    position: relative; /* Necesario para posicionar el submenu absolutamente */
+  }
+  
+  .menu-toggle {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em; /* Aumento del 20% (1em es el tamaño base) */
+    display: flex; /* Para alinear la imagen y el texto */
+    align-items: center; /* Centra verticalmente la imagen y el texto */
+  }
+
+  .menu-icon {
+    width: 41px; /* Ajusta el tamaño de la imagen según necesites */
+    height: auto;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    border-radius: 5px;
+}
+  
+  .submenu {
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0;
+    margin: 0;
+    position: absolute; /* Permite posicionar el submenu relative al .menu */
+    top: 100%; /* Coloca el submenu justo debajo del botón */
+    left: 0;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    z-index: 10; /* Asegura que el submenu esté por encima de otros elementos */
+     /* Ancho del submenu */
+  }
+  
+  .submenu li a {
+    display: block; /* Hace que los enlaces ocupen todo el ancho del li */
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .submenu li a:hover {
+    background-color: #ddd;
+  }
+/*estilo cuando el submenu esta activado*/
+  ul.active{
+    /*display: block;*/
+     /* Ancho del submenu */
+    height: 635px;
+  }
+/*estilo por defecto del submenu*/
+  .submenu{
+    /*display: none;*/
+    /* Ancho del submenu */
+    overflow: hidden;
+    white-space: nowrap;
+    transition: height 500ms ease;
+    height: 0px;
+  }
+
+  /*con esto se puede imitar los estilos de bootstrap*/
+.box {
+    display: flex;
+    justify-content: center;
+}
+
+/*clases para los avisos de si se inserto un registro con exito o no*/
+.alert_green {
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    /* float: left; */
+    width: 300px;
+
+}
+
+.alert_red {
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    width: 300px;
+}
+
+.crear {
+    margin-top: 20px;
+    border-top: solid 2px #01B1EA;
+    text-align: center;
+
+}
+
+.crear .button {
+    margin: auto !important;
+}
+
+#alerta {
+    margin: 10px;
+    height: 30px;
+    width: 80%;
+}
+
+.button-delete{
+    padding: 1px !important;
+}
