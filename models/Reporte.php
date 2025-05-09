@@ -7,6 +7,7 @@ class Reporte
     private $fecha;
     private $numero_de_permiso;
     private $observaciones;
+    private $hora_creacion;
     private $db;
 
     /**
@@ -67,12 +68,22 @@ class Reporte
     {
         $this->observaciones = $observaciones;
     }
+
+    function getHora_creacion()
+    {
+        return $this->hora_creacion;
+    }
+
+    function setHora_creacion($hora_creacion)
+    {
+        $this->hora_creacion = $hora_creacion;
+    }
     
 
     public function save()
     {
         $sql = "INSERT INTO reporte values(NULL, {$this->getId_linea_de_transmision()}, "
-            . "'{$this->getFecha()}', '{$this->getNumero_de_permiso()}', '{$this->getObservaciones()}') ";
+            . "'{$this->getFecha()}', '{$this->getNumero_de_permiso()}', '{$this->getObservaciones()}', '{$this->getHora_creacion()}') ";
         
         $save = $this->db->query($sql);
 

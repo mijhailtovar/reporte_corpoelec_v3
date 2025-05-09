@@ -3,9 +3,10 @@
 class Bobina
 {
     private $id;
-    private $id_interruptor;
+    private $id_proteccion;
     private $disparo;
     private $fecha;
+    private $hora_creacion;
     private $db;
 
 
@@ -28,14 +29,14 @@ class Bobina
         $this->id = $id;
     }
 
-    function getId_interruptor()
+    function getId_proteccion()
     {
-        return $this->id_interruptor;
+        return $this->id_proteccion;
     }
 
-    function setId_interruptor($id_interruptor)
+    function setId_proteccion($id_proteccion)
     {
-        $this->id_interruptor = $id_interruptor;
+        $this->id_proteccion = $id_proteccion;
     }
 
     public function getDisparo()
@@ -57,12 +58,21 @@ class Bobina
     {
         $this->fecha = $fecha;
     }
+    public function getHora_creacion()
+    {
+        return $this->hora_creacion;
+    }
+
+    public function setHora_creacion($hora_creacion)
+    {
+        $this->hora_creacion = $hora_creacion;
+    }
     
 
     public function save()
     {
         $sql = "INSERT INTO bobina values(NULL, "
-            . "{$this->getId_interruptor()}, {$this->getDisparo()}, '{$this->getFecha()}')";
+            . "{$this->getId_proteccion()}, {$this->getDisparo()}, '{$this->getFecha()}', '{$this->getHora_creacion()}')";
         $save = $this->db->query($sql);
 
         $result = false;

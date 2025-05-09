@@ -89,9 +89,13 @@ $html = "";
 
 /* aqui empieza el bucle de las lineas de transmision
 donde se recorren todas las lineas de transmision */
-$alterna = 1; 
+
+$html_2 = '';
 while($lin = $lineas->fetch_object()){
-/*
+
+    if($sub->id == $lin->id_subestacion){
+
+        /*
     if ($alterna % 2 == 0) {
         $clase_alterna = "alterna";
     }else{
@@ -125,58 +129,65 @@ while($lin = $lineas->fetch_object()){
             $html .= '<tr class="alterna"><td colspan="4">' . $pro->nombre . '</td></tr>';
 
             //reinicia el contador de interruptores
-            $interruptores->data_seek(0);
+            //$interruptores->data_seek(0);
 
             //fila del nombre del interruptor
             $html .= '<tr>';
             $cantidad_interruptores = 0;
             while ($intr = $interruptores->fetch_object()) {
                 if ($intr->id_proteccion == $pro->id) {
-                    $html .= '<td colspan="2">' . $intr->nombre . '</td>';
+                    $html .= '<td colspan="2">' . $intr->nombre .'</td>';
                     $cantidad_interruptores++;
                 }
             }
+            $interruptores->data_seek(0);
             $html .= '</tr>';
 
-            
 
             //fila de las bobinas si disparo o no
             if ($cantidad_interruptores <= 0) {
                 //no hagas ninguna fila de bobinas si no hay interruptores
             }
             elseif($cantidad_interruptores <= 1){
-                $html .= '<tr><td>Bobina 1</td><td>Bobina 2</td></tr>';
+                $html .= '<tr ><td>Bobina 1</td><td>Bobina 2</td></tr>';
 
                 $html .= '<tr>';
                 while ($intr = $interruptores->fetch_object()) {
-                    while ($bob = $Bobinas->fetch_object()) {
-                        if ($bob->id_interruptor == $intr->id) {
-                            $html .= '<td>' . 'Disparo: ' . ($bob->disparo ? 'SI' : 'NO'). '</td>';
-                        }
-                    }            
-                }            
+                    if ($intr->id_proteccion == $pro->id) {
+                        while ($bob = $Bobinas->fetch_object()) {
+                            if ($bob->id_interruptor == $intr->id) {
+                                $html .= '<td>' . 'Disparo: ' . ($bob->disparo ? 'SI' : 'NO').  '</td>';
+                            }
+                        }$Bobinas->data_seek(0);    
+                    }        
+                }
+                //$interruptores->data_seek(0);            
                 $html .= '</tr>';
 
                 //reinicia el contaador de interruptores
-                $interruptores->data_seek(0);
+                //$interruptores->data_seek(0);
 
             }elseif($cantidad_interruptores >= 2){
-                $html .= '<tr><td>Bobina 1</td><td>Bobina 2</td><td>Bobina 1</td><td>Bobina 2</td></tr>';
+                $html .= '<tr ><td>Bobina 1</td><td>Bobina 2</td><td>Bobina 1</td><td>Bobina 2</td></tr>';
 
                 $html .= '<tr>';
                 while ($intr = $interruptores->fetch_object()) {
-                    $count = 1;
-                    while ($bob = $Bobinas->fetch_object()) {
-                        if ($bob->id_interruptor == $intr->id) {
-                            if($count == 1){
-                                $html .= '<td>' . ($count ? 'Disparo: ' : '' ) . ($bob->disparo ? '√' : 'X') . '</td>';
-                            }else{
-                                $html .= '<td>' . ($bob->disparo ? '√' : 'X') . '</td>';
+                    if ($intr->id_proteccion == $pro->id) {
+                        $count = 1;
+                        while ($bob = $Bobinas->fetch_object()) {
+                            if ($bob->id_interruptor == $intr->id) {
+                                if($count == 1){
+                                    $html .= '<td>' . ($count ? 'Disparo: ' : '' ) . ($bob->disparo ? 'SI' : 'NO')  .  '</td>';
+                                }else{
+                                    $html .= '<td>' . ($bob->disparo ? 'SI' : 'NO')  .  '</td>';
+                                }
+                                $count = 0;
                             }
-                            $count = 0;
-                        }
-                    }            
+                        }$Bobinas->data_seek(0);       
+                    }
+                           
                 }            
+                //$interruptores->data_seek(0);
                 $html .= '</tr>';
             }
             $html .= "</table>";
@@ -192,6 +203,7 @@ while($lin = $lineas->fetch_object()){
 
             //fila del nombre de las funciones tanto de envio como de recepcion
             $html .= '<tr>';
+            // contador para saber cuantas columnas se han impreso
             $count_2 = 0;
             while ($fun_env = $Funcion_envios->fetch_object()) {
                 if ($fun_env->id_proteccion == $pro->id) {
@@ -201,6 +213,7 @@ while($lin = $lineas->fetch_object()){
                 }
                 $count_2++;
             }
+            $count_2 = 0;
 
             while ($fun_rep = $Funcion_recepciones->fetch_object()) {
                 if ($fun_rep->id_proteccion == $pro->id) {
@@ -227,7 +240,7 @@ while($lin = $lineas->fetch_object()){
             //funcion envios
             while ($fun_env = $Funcion_envios->fetch_object()) {
                 if ($fun_env->id_proteccion == $pro->id) {
-                    $html .= '<td>' . ($fun_env->envio ? '√' : 'X') . '</td>';
+                    $html .= '<td>' . ($fun_env->envio ? 'SI' : 'NO') . '</td>';
                 }elseif($count_1 < 2){
                     $html .= '<td>NA</td>';
                 }
@@ -237,13 +250,12 @@ while($lin = $lineas->fetch_object()){
             //funcion recepcion
             while($fun_rep = $Funcion_recepciones->fetch_object()){
                 if ($fun_rep->id_proteccion == $pro->id) {
-                    $html .= '<td>' . ($fun_rep->recepcion ? '√' : 'X') . '</td>';
+                    $html .= '<td>' . ($fun_rep->recepcion ? 'SI' : 'NO') . '</td>';
                 }elseif($count_2 < 2){
                     $html .= '<td>NA</td>';
                 }
                 $count_2++;
             }
-            $html .= '</tr>';
 
             //reinicia para iterar las DDT
             $Funcion_envios->data_seek(0);
@@ -251,7 +263,7 @@ while($lin = $lineas->fetch_object()){
             while ($fun_env = $Funcion_envios->fetch_object()) {
                 while ($DDT_env = $DDT_envios->fetch_object()) {
                     if ($DDT_env->id_funcion_envio == $fun_env->id) {
-                        $html .= '<td>' . ($DDT_env->envio ? '√' : 'X') . '</td>';
+                        $html .= '<td>' . ($DDT_env->envio ? 'SI' : 'NO') . '</td>';
                     }elseif($count_1 < 2){
                         $html .= '<td>NA</td>';
                     }
@@ -265,21 +277,35 @@ while($lin = $lineas->fetch_object()){
             while ($fun_rep = $Funcion_recepciones->fetch_object()) {
                 while ($DDT_rep = $DDT_recepciones->fetch_object()) {
                     if ($DDT_rep->id_funcion_recepcion == $fun_rep->id) {
-                        $html .= '<td>' . ($DDT_rep->recepcion ? '√' : 'X') . '</td>';
+                        $html .= '<td>' . ($DDT_rep->recepcion ? 'SI' : 'NO') . '</td>';
                     }elseif($count_1 < 2){
                         $html .= '<td>NA</td>';
                     }
                     $count_1++;
                 }
             }
-
+            $html .= '</tr>';
 
             $html .= "</table>";
             $html .= '<div style="width: 305px; height: 25px;" ></div>';
 
         }
-        $alterna++;
+        //devuelve al ilnicio todo estos objetos para iterarlos correctamente
+    $interruptores->data_seek(0);
+    $Funcion_envios->data_seek(0);
+    $Funcion_recepciones->data_seek(0);
+    $Bobinas->data_seek(0);  
+    $DDT_envios->data_seek(0);  
+    $DDT_recepciones->data_seek(0);
+        
     }
+
+    /*
+    $html_2 .= $html;
+    echo $html_2;
+    //var_dump($html_2);
+    die;
+    */
 
     //escribe en el objeto pdf, es decir escribe una pagina
     $mpdf->WriteHTML($html);
@@ -290,15 +316,26 @@ while($lin = $lineas->fetch_object()){
     // vuelve al principio de las protecciones para poder capturar otras
     // protecciones que coincidan con la linea de transmision
     $protecciones->data_seek(0);
-    $interruptores->data_seek(0);
-    $Funcion_envios->data_seek(0);
-    $Funcion_recepciones->data_seek(0);
-}
 
+    
+    //$mpdf->Output();
+    
+    }
+}
 
 //genera el objeto pdf
 $mpdf->Output();
 
+// linea muy UTIL que sirve para ebuguear el pdf ya que devuelve el resultado asi no este bien
+// lo guarda en la raiz de este proyecto y se llama debug
+//$mpdf->Output('debug.pdf', 'F');
+
 //cierra las
 $lineas->close();
 $protecciones->close();
+$interruptores->close();
+$Funcion_envios->close();
+$Funcion_recepciones->close();
+$Bobinas->close();    
+$DDT_envios->close();  
+$DDT_recepciones->close();

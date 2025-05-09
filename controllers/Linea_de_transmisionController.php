@@ -38,7 +38,7 @@ class Linea_de_transmisionController
             $_SESSION['identificado'] = true;
         }
 
-        header("Location:".base_url."Linea_de_transmisionController/index");
+        header("Location:?controller=Linea_de_transmisionController&action=index");
     }
  
     public function eliminar()
@@ -67,6 +67,6 @@ class Linea_de_transmisionController
             $_SESSION['delete'] = "failed";
         }
 
-        header("Location:".base_url."Linea_de_transmisionController/index");
+        header("Location:?controller=Linea_de_transmisionController&action=index");
     }
 }

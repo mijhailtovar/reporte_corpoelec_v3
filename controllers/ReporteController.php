@@ -37,7 +37,7 @@ class ReporteController
             $_SESSION['identificado'] = true;
         }
         
-        header("Location:".base_url."ReporteController/index");
+        header("Location:?controller=ReporteController&action=index");
     }
  
     public function eliminar()
@@ -66,6 +66,6 @@ class ReporteController
             $_SESSION['delete'] = "failed";
         }
 
-        header("Location:".base_url."ReporteController/index");
+        header("Location:?controller=ReporteController&action=index");
     }
 }

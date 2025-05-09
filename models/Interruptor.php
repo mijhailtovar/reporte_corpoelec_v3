@@ -5,6 +5,8 @@ class Interruptor
     private $id;
     private $id_proteccion;
     private $nombre;
+    private $fecha;
+    private $hora_creacion;
     private $db;
 
     /**
@@ -45,12 +47,32 @@ class Interruptor
     {
         $this->nombre = $nombre;
     }
+
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    }
+
+    public function getHora_creacion()
+    {
+        return $this->hora_creacion;
+    }
+
+    public function setHora_creacion($hora_creacion)
+    {
+        $this->hora_creacion = $hora_creacion;
+    }
     
 
     public function save()
     {
         $sql = "INSERT INTO interruptor values(NULL, "
-            . "{$this->getId_proteccion()}, '{$this->getNombre()}')";
+            . "{$this->getId_proteccion()}, '{$this->getNombre()}', '{$this->getFecha()}', '{$this->getHora_creacion()}')";
         $save = $this->db->query($sql);
 
         $result = false;

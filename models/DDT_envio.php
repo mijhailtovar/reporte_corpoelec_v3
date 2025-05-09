@@ -3,9 +3,10 @@
 class DDT_envio
 {
     private $id;
-    private $id_funcion_envio;
+    private $id_proteccion;
     private $envio;
     private $fecha;
+    private $hora_creacion;
     private $db;
 
     /**
@@ -27,14 +28,14 @@ class DDT_envio
         $this->id = $id;
     }
 
-    function getId_funcion_envio()
+    function getId_proteccion()
     {
-        return $this->id_funcion_envio;
+        return $this->id_proteccion;
     }
 
-    function setId_funcion_envio($id_funcion_envio)
+    function setId_proteccion($id_proteccion)
     {
-        $this->id_funcion_envio = $id_funcion_envio;
+        $this->id_proteccion = $id_proteccion;
     }
 
     public function getEnvio()
@@ -57,10 +58,20 @@ class DDT_envio
         $this->fecha = $fecha;
     }
 
+    public function getHora_creacion()
+    {
+        return $this->hora_creacion;
+    }
+
+    public function setHora_creacion($hora_creacion)
+    {
+        $this->hora_creacion = $hora_creacion;
+    }
+
     public function save()
     {
         $sql = "INSERT INTO DDT_envio values(NULL, "
-            . "{$this->getId_funcion_envio()}, {$this->getEnvio()}, '{$this->getFecha()}')";
+            . "{$this->getId_proteccion()}, {$this->getEnvio()}, '{$this->getFecha()}', '{$this->getHora_creacion()}')";
         $save = $this->db->query($sql);
 
         $result = false;

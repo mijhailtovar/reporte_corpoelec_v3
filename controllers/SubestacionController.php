@@ -38,7 +38,7 @@ class SubestacionController
             //indica que insertaste un registro para inprimir un mensaje de exito en el index
             $_SESSION['identificado'] = true;
         }
-        header("Location:".base_url."SubestacionController/index");
+        header("Location:?controller=SubestacionController&action=index");
     }
  
     public function eliminar()
@@ -67,6 +67,6 @@ class SubestacionController
             $_SESSION['delete'] = "failed";
         }
 
-        header("Location:".base_url."SubestacionController/index");
+        header("Location:?controller=SubestacionController&action=index");
     }
 }

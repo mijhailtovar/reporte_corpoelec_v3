@@ -32,9 +32,8 @@ die;
         <tr class="alterna" >
             <td><?=$sub->id; ?></td>
             <td><?=$sub->nombre; ?></td>
- 
             <td class="box">
-                <a href="<?=base_url?>SubestacionController/eliminar&id=<?=$sub->id; ?>" class="button button-red button-delete">eliminar</a>
+                <a href="?controller=SubestacionController&action=eliminar&id=<?=$sub->id; ?>" class="button button-red button-delete">eliminar</a>
             </td>
 
             <?php 
@@ -61,6 +60,6 @@ die;
 </table>
 
 
-<a href="<?=base_url;?>SubestacionController/crear" class="button button-small" id="RegistrarMercancia">
+<a href="?controller=SubestacionController&action=crear" class="button button-small" id="RegistrarMercancia">
     Registrar Subestacion
 </a>

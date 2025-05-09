@@ -239,6 +239,11 @@ textarea {
     margin-bottom: 2px;
     font-size: 25px;
 }
+input[type="number"]{
+    font-size: 25px;
+    display: block;
+    width: 25%;
+}
 
 input[type="text"],
 input[type="email"],
@@ -479,7 +484,7 @@ col.columna-tres {
   ul.active{
     /*display: block;*/
      /* Ancho del submenu */
-    height: 635px;
+    height: 344px;
   }
 /*estilo por defecto del submenu*/
   .submenu{
@@ -540,4 +545,21 @@ col.columna-tres {
 
 .button-delete{
     padding: 1px !important;
+}
+
+/*clase para ocultar elementos en el DOM*/
+.oculto {
+    display: none; /* Oculta completamente el elemento */
+    /*
+    Alternativamente, puedes usar:
+    visibility: hidden; // Oculta el elemento pero ocupa su espacio
+    position: absolute;
+    left: -9999px; // Moverlo fuera de la pantalla
+    */
+}
+
+/*rompe flotados*/
+.rompe_flotados{
+    clear: both;
+    float: none;
 }

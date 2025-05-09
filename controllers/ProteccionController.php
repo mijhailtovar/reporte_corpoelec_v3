@@ -34,7 +34,7 @@ class ProteccionController
             $_SESSION['identificado'] = true;
         }
 
-        header("Location:".base_url."ProteccionController/index");
+        header("Location:?controller=ProteccionController&action=index");
     }
  
     public function eliminar()
@@ -44,10 +44,10 @@ class ProteccionController
         if(isset($_GET['id']) && !empty($_GET['id']))
         {
             //elimina la mercacancia entrante
-            $subestacion = new Subestacion();
-            $subestacion->setId($_GET['id']);
+            $proteccion = new Proteccion();
+            $proteccion->setId($_GET['id']);
 
-            $delete = $subestacion->delete();
+            $delete = $proteccion->delete();
 
             if($delete)
             {
@@ -63,6 +63,6 @@ class ProteccionController
             $_SESSION['delete'] = "failed";
         }
 
-        header("Location:".base_url."SubestacionController/index");
+        header("Location:?controller=ProteccionController&action=index");
     }
 }

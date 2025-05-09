@@ -40,7 +40,8 @@ id                  int(255) auto_increment not null,
 id_linea_de_transmision      int(255) not null,
 fecha               date not null,
 numero_de_permiso   varchar(255) not null,
-observaciones       varchar(255) not null, /*cambio en la version 2*/
+observaciones       varchar(255), /*cambio en la version 2*/
+hora_creacion       TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), /*cambio en la version 3*/
 CONSTRAINT pk_reporte PRIMARY KEY(id),
 CONSTRAINT fk_reporte_linea_de_transmision FOREIGN KEY(id_linea_de_transmision) REFERENCES linea_de_transmision(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
@@ -121,21 +122,26 @@ CONSTRAINT pk_proteccion PRIMARY KEY(id),
 CONSTRAINT fk_proteccion_linea_de_transmision FOREIGN KEY(id_linea_de_transmision) REFERENCES linea_de_transmision(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
+/*INSERT INTO proteccion VALUES(NULL, 2, )*/
+
 CREATE TABLE interruptor(
 id                  int(255) auto_increment not null,
 id_proteccion       int(255) not null,
 nombre              varchar(255) not null,
+fecha               date not null, /*CAMBIO V2*/
+hora_creacion       TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), /*cambio en la version 3*/
 CONSTRAINT pk_interruptor PRIMARY KEY(id),
 CONSTRAINT fk_interruptor_proteccion FOREIGN KEY(id_proteccion) REFERENCES proteccion(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE bobina(
 id                  int(255) auto_increment not null,
-id_interruptor      int(255) not null,
+id_proteccion       int(255) not null,
 disparo             boolean, /*sinonimo de tiny int 0 es falso cualquier valor distinto de 0 es true*/
 fecha               date not null, /*CAMBIO V2*/
+hora_creacion       TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), /*cambio en la version 3*/
 CONSTRAINT pk_bobina PRIMARY KEY(id),
-CONSTRAINT fk_bobina_interruptor FOREIGN KEY(id_interruptor) REFERENCES interruptor(id) ON DELETE CASCADE
+CONSTRAINT fk_bobina_proteccion FOREIGN KEY(id_proteccion) REFERENCES proteccion(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE funcion_recepcion(
@@ -144,17 +150,19 @@ id_proteccion       int(255) not null,
 nombre              varchar(255) not null,
 recepcion           boolean,
 fecha               date not null, /*CAMBIO V2*/
+hora_creacion       TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), /*cambio en la version 3*/
 CONSTRAINT pk_funcion_recepcion PRIMARY KEY(id),
 CONSTRAINT fk_funcion_recepcion_proteccion FOREIGN KEY(id_proteccion) REFERENCES proteccion(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE DDT_recepcion(
 id                       int(255) auto_increment not null,
-id_funcion_recepcion     int(255) not null,
+id_proteccion            int(255) not null,
 recepcion                boolean, /*sinonimo de tiny int 0 es falso cualquier valor distinto de 0 es true*/
 fecha                    date not null, /*CAMBIO V2*/
+hora_creacion       TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), /*cambio en la version 3*/
 CONSTRAINT pk_DDT_recepcion PRIMARY KEY(id),
-CONSTRAINT fk_DDT_recepcion_funcion_recepcion FOREIGN KEY(id_funcion_recepcion) REFERENCES funcion_recepcion(id) ON DELETE CASCADE
+CONSTRAINT fk_DDT_recepcion_proteccion FOREIGN KEY(id_proteccion) REFERENCES proteccion(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 
@@ -164,17 +172,19 @@ id_proteccion       int(255) not null,
 nombre              varchar(255) not null,
 envio               boolean,
 fecha               date not null, /*CAMBIO V2*/
+hora_creacion       TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), /*cambio en la version 3*/
 CONSTRAINT pk_funcion_envio PRIMARY KEY(id),
 CONSTRAINT fk_funcion_envio_proteccion FOREIGN KEY(id_proteccion) REFERENCES proteccion(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 CREATE TABLE DDT_envio(
 id                       int(255) auto_increment not null,
-id_funcion_envio         int(255) not null,
+id_proteccion           int(255) not null,
 envio                    boolean, /*sinonimo de tiny int 0 es falso cualquier valor distinto de 0 es true*/
 fecha                    date not null, /*CAMBIO V2*/
+hora_creacion           TIMESTAMP DEFAULT CURRENT_TIMESTAMP(), /*cambio en la version 3*/
 CONSTRAINT pk_DDT_envio PRIMARY KEY(id),
-CONSTRAINT fk_DDT_envio_funcion_envio FOREIGN KEY(id_funcion_envio) REFERENCES funcion_envio(id) ON DELETE CASCADE
+CONSTRAINT fk_DDT_envio_proteccion FOREIGN KEY(id_proteccion) REFERENCES proteccion(id) ON DELETE CASCADE
 )ENGINE=InnoDb;
 
 

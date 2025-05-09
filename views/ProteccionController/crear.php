@@ -1,6 +1,6 @@
 <h1>Crear Proteccion</h1>
 
-<form action="<?=base_url?>?controller=ProteccionController&action=save" method="POST">
+<form action="?controller=ProteccionController&action=save" method="POST">
 
 <!--muestra las id disponible de los lineas de transmision de modo de solo seleccionar
 la id de las lineas que existen en la bd-->

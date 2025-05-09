@@ -1,6 +1,6 @@
 <h1>Crear Linea de transmision</h1>
 
-<form action="<?=base_url?>?controller=linea_de_transmisionController&action=save" method="POST">
+<form action="?controller=linea_de_transmisionController&action=save" method="POST">
 
 <!--muestra las id disponible de los subestaciones de modo de solo seleccionar
 la id de las subestaciones que existen en la bd-->

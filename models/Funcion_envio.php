@@ -7,6 +7,7 @@ class Funcion_envio
     private $nombre;
     private $envio;
     private $fecha;
+    private $hora_creacion;
     private $db;
 
     /**
@@ -68,10 +69,20 @@ class Funcion_envio
         $this->fecha = $fecha;
     }
 
+    public function getHora_creacion()
+    {
+        return $this->hora_creacion;
+    }
+
+    public function setHora_creacion($hora_creacion)
+    {
+        $this->hora_creacion = $hora_creacion;
+    }
+
     public function save()
     {
         $sql = "INSERT INTO funcion_envio values(NULL, {$this->getId_proteccion()}, "
-            . "'{$this->getNombre()}', {$this->getEnvio()}, '{$this->getFecha()}') ";
+            . "'{$this->getNombre()}', {$this->getEnvio()}, '{$this->getFecha()}', '{$this->getHora_creacion()}') ";
         
         $save = $this->db->query($sql);
 
@@ -93,7 +104,7 @@ class Funcion_envio
 
     public function getALL()
     {
-        $F_recepcion = $this->db->query("SELECT * FROM funcion_envio");
-        return $F_recepcion;
+        $F_envio = $this->db->query("SELECT * FROM funcion_envio");
+        return $F_envio;
     }
 }

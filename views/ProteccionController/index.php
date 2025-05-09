@@ -30,6 +30,9 @@ die;
             <td><?=$pro->nombre; ?></td>
             <td><?=$pro->marca; ?></td>
             <td><?=$pro->modelo; ?></td>
+            <td class="box">
+                <a href="?controller=ProteccionController&action=eliminar&id=<?=$pro->id; ?>" class="button button-red button-delete">eliminar</a>
+            </td>
 
         </tr>
     <?php
@@ -39,6 +42,7 @@ die;
 </table>
 
 
-<a href="<?=base_url;?>ProteccionController/crear" class="button button-small" id="RegistrarMercancia">
+
+<a href="?controller=ProteccionController&action=crear" class="button button-small" id="RegistrarMercancia">
     Registrar Protecciones
 </a>

@@ -3,9 +3,10 @@
 class DDT_recepcion
 {
     private $id;
-    private $id_funcion_recepcion;
+    private $id_proteccion;
     private $recepcion;
     private $fecha;
+    private $hora_creacion;
     private $db;
 
     /**
@@ -27,14 +28,14 @@ class DDT_recepcion
         $this->id = $id;
     }
 
-    function getId_funcion_recepcion()
+    function getId_proteccion()
     {
-        return $this->id_funcion_recepcion;
+        return $this->id_proteccion;
     }
 
-    function setId_funcion_recepcion($id_funcion_recepcion)
+    function setId_proteccion($id_proteccion)
     {
-        $this->id_funcion_recepcion = $id_funcion_recepcion;
+        $this->id_proteccion = $id_proteccion;
     }
 
     public function getRecepcion()
@@ -57,10 +58,20 @@ class DDT_recepcion
         $this->fecha = $fecha;
     }
 
+    public function getHora_creacion()
+    {
+        return $this->hora_creacion;
+    }
+
+    public function setHora_creacion($hora_creacion)
+    {
+        $this->hora_creacion = $hora_creacion;
+    }
+
     public function save()
     {
         $sql = "INSERT INTO ddt_recepcion values(NULL, "
-            . "{$this->getId_funcion_recepcion()}, {$this->getRecepcion()}, '{$this->getFecha()}')";
+            . "{$this->getId_proteccion()}, {$this->getRecepcion()}, '{$this->getFecha()}', '{$this->getHora_creacion()}')";
         $save = $this->db->query($sql);
 
         $result = false;

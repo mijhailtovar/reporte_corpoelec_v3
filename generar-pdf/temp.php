@@ -49,3 +49,12 @@ while($pro = $productos->fetch_object()){
                 }
             }
             $html .= '</tr>';
+
+            while ($DDT_env = $DDT_envios->fetch_object()) {
+                    if ($DDT_env->id_funcion_envio == $fun_env->id) {
+                        $html .= '<td>' . ($DDT_env->envio ? '√' : 'X') . '</td>';
+                    }elseif($count_1 < 2){
+                        $html .= '<td>NA</td>';
+                    }
+                    $count_1++;
+                }

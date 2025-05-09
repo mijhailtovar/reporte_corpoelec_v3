@@ -5,28 +5,27 @@
 <!--muestra las id disponible de los subestaciones de modo de solo seleccionar
 la id de las subestaciones que existen en la bd-->
 <label for="id_producto">id_proteccion</label>
-    <?php 
-    //mostrar protecciones
-    $protecciones = Utils::showProtecciones();
-    //mostrar linea de transmision de las protecciones
-    $LT = Utils::showLineas_de_transmision();
-    ?>
+<?php 
 
-    <select name="id_proteccion" id="id_producto">
-        <?php while($lin = $LT->fetch_object()): ?>
+//mostrar protecciones
+$protecciones = Utils::showProtecciones();
+//mostrar linea de transmision de las protecciones
+$LT = Utils::showLineas_de_transmision();
 
-            <?php while($pro = $protecciones->fetch_object()): ?>
-
-                <?php if($lin->id == $pro->id_linea_de_transmision):?>
-                    <option value="<?=$pro->id?>">
-                    LT: <?=$lin->nombre . " - " .$pro->nombre?>
-                    </option>
-                <?php endif;?>
-
-            <?php endwhile; ?>
-
-        <?php endwhile; ?>
-    </select>
+echo '<select name="id_proteccion" id="id_producto">';
+while ($lin = $LT->fetch_object()) {
+    while($pro = $protecciones->fetch_object()){
+        if ($lin->id == $pro->id_linea_de_transmision) {
+            echo '<option value=' . $pro->id . '>';
+            echo 'LT: (' . $lin->nombre . ') Prot: ' . $pro->id . ' - ' . $pro->nombre;
+            echo '</option>';
+        }
+    }
+    $protecciones->data_seek(0);
+}
+    
+echo '</select>'
+?>
 
 
     <label for="nombre">nombre</label>

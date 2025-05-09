@@ -7,6 +7,7 @@ class Funcion_recepcion
     private $nombre;
     private $recepcion;
     private $fecha;
+    private $hora_creacion;
     private $db;
 
     /**
@@ -68,10 +69,20 @@ class Funcion_recepcion
         $this->fecha = $fecha;
     }
 
+    public function getHora_creacion()
+    {
+        return $this->hora_creacion;
+    }
+
+    public function setHora_creacion($hora_creacion)
+    {
+        $this->hora_creacion = $hora_creacion;
+    }
+
     public function save()
     {
         $sql = "INSERT INTO funcion_recepcion values(NULL, {$this->getId_proteccion()}, "
-            . "'{$this->getNombre()}', {$this->getRecepcion()}, '{$this->getFecha()}') ";
+            . "'{$this->getNombre()}', {$this->getRecepcion()}, '{$this->getFecha()}', '{$this->getHora_creacion()}') ";
         
         $save = $this->db->query($sql);
 

@@ -7,6 +7,6 @@
         </footer>
     </div>
 
-    <script src="/mijhail_server/reportes_corpoelec/assets/js/main_2.js"></script>
+    <script src="/assets/js/main_2.js"></script>
 </body>
 </html>

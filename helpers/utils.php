@@ -99,15 +99,14 @@ class Utils
         return $reporte;
     }
     //recoje el numero de reportes dada una fecha especifica
-    public static function contarReportesPorFecha($fecha){
+    public static function contarReportes(){
 
         //conectarse a la base de datos
         $db = Database::connect();
 
-        //consulta para obtener reporte(s) por fecha
+        //consulta para obtener reporte(s)
         $sql = "SELECT COUNT(*) AS total_registros
-                FROM reporte
-                WHERE fecha = '{$fecha}'";
+                FROM reporte";
 
         $reporte = $db->query($sql);
 
@@ -118,6 +117,21 @@ class Utils
         $total_reportes = $fila['total_registros'];
 
         return $total_reportes;
+    }
+
+    public static function hora_actual(){
+        //conectarse a la base de datos
+        $db = Database::connect();
+
+        //consulta para obtener la hora exacta
+        $sql = "SELECT CURRENT_TIMESTAMP() AS hora_actual;";
+
+        $hora = $db->query($sql);
+        $fila = $hora->fetch_assoc();
+
+        $hora_actual = $fila['hora_actual'];
+
+        return $hora_actual;
     }
 
     

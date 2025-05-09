@@ -24,7 +24,7 @@
             <td><?=$lin->nombre; ?></td>
             <td><?=$lin->anillo; ?></td>
             <td class="box">
-                <a href="<?=base_url?>Linea_de_transmisionController/eliminar&id=<?=$lin->id; ?>" class="button button-red button-delete">eliminar</a>
+                <a href="?controller=Linea_de_transmisionController&action=eliminar&id=<?=$lin->id; ?>" class="button button-red button-delete">eliminar</a>
             </td>
         </tr>
     <?php
@@ -34,6 +34,6 @@
 </table>
 
 
-<a href="<?=base_url;?>Linea_de_transmisionController/crear" class="button button-small" id="RegistrarMercancia">
+<a href="?controller=Linea_de_transmisionController&action=crear" class="button button-small" id="RegistrarMercancia">
     Registrar Lineas de transmision
 </a>
