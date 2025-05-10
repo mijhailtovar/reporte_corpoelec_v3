@@ -1,0 +1,2 @@
+recuerda instalar la siuiente dependencia 
+ composer require mpdf/mpdf
